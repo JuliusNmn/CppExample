@@ -4,7 +4,7 @@ project(example)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Check if argh is being used directly or via add_subdirectory
+
 set(EXAMPLE_PROJECT OFF)
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   set(EXAMPLE_PROJECT ON)
