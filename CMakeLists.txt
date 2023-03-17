@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.1)
+
+project(example)
+
+set(CMAKE_CXX_STANDARD 11)
+
+# Check if argh is being used directly or via add_subdirectory
+set(EXAMPLE_PROJECT OFF)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(EXAMPLE_PROJECT ON)
+endif()
+
+
+option(BUILD_EXAMPLES "Build examples. Uncheck for install only runs"
+       ${EXAMPLE_PROJECT})
+
+if (CMAKE_CXX_COMPILER_ID MATCHES "(Clang|GNU)")
+	list(APPEND flags "-Wall" "-Wextra" "-Wshadow" "-Wnon-virtual-dtor" "-pedantic")
+elseif(MSVC)
+	list(APPEND flags "/W4" "/WX")
+endif()
+
+add_executable(main main.cpp)
+target_compile_options(main PRIVATE ${flags})
+    
