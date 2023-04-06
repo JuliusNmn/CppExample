@@ -19,7 +19,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "(Clang|GNU)")
 elseif(MSVC)
 	list(APPEND flags "/W4" "/WX")
 endif()
-
-add_executable(main main.cpp)
+list(APPEND flags "-g")
+add_executable(main main.cpp Animal.cpp NormalAnimals.cpp TestAnimals.cpp)
 target_compile_options(main PRIVATE ${flags})
     

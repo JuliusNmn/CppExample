@@ -1,74 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-class Animal {
+#include "Animal.h"
+#include "NormalAnimals.h"
+#include "TestAnimals.h"
 
-    public:
-    Animal* parent;
-    virtual void makeSound() {
-        printf("I do not exist");
-    }
-    virtual void walk() {
-        printf("I do not exist");
-    }
-    virtual void eat(int foodAmount) {
-        printf("I do not exist. someone fed me %d but i am unable to consume.", foodAmount);
-    }
-};
-
-class DeadNeverInstantiatedAnimal : public Animal  {
-    virtual void makeSound() {
-        printf("I am dead");
-    }
-    virtual void walk() {
-        printf("I am dead");
-    }
-    virtual void eat(int foodAmount) {
-        printf("I am dead");
-    }
-};
-
-class InstantiatedButUnusedAnimal : public Animal {
-    virtual void makeSound() {
-        printf("I am dead");
-    }
-    virtual void walk() {
-        printf("I am dead");
-    }
-    virtual void eat(int foodAmount) {
-        printf("I am dead");
-    }
-};
-
-class Cat : public Animal {
-
-    public:
-    int belly;
-    virtual void makeSound() {
-            printf("Meow");
-    }
-    virtual void walk() {
-        printf("I step step with mz cat paws");
-    }
-    virtual void eat(int foodAmount) {
-        belly += foodAmount;
-        printf("Meow i like the cat food. My belly is this full: %d", belly);
-    }
-};
-class Dog : public Animal {
-
-    public:
-    int belly;
-    virtual void makeSound() {
-            printf("Woof");
-    }
-    virtual void walk() {
-        printf("I gots the zoomies");
-    }
-    virtual void eat(int foodAmount) {
-        belly += foodAmount;
-        printf("I am a hungry dog. My belly is this full: %d", belly);
-    }
-};
 Animal* createAnimalPointer() {
     return new Cat();
 }
@@ -137,30 +72,21 @@ void pointerArray(){
 }
 
 
-void valueArrayMalloc(){
-    Dog* dogs = (Dog*)malloc(sizeof(Dog) * 10);
-    for (int i = 0; i < 10; i++) {
-        Dog d = Dog();
-        dogs[i] = d;
-    }
-
-    dogs[0x5].eat(0x4);
-}
-
 void valueArray(){
     Dog* dogs = new Dog[10];
     for (int i = 0; i < 10; i++) {
-        Dog d = Dog();
-        dogs[i] = d;
+        Dog* d = new Dog();
+        dogs[i] = *d;
     }
-
-    dogs[0x5].eat(0x5);
+    Dog* d = &(dogs[0x5]);
+    d->eat(0x4);
 }
 
 
 void feedParent(Animal* c) {
     c->parent->eat(15);
 }
+
 void addParent(Animal* a) {
     a->parent = new Cat();
 }
@@ -201,7 +127,6 @@ int main(){
     
     pointerArrayMalloc();
     pointerArray();
-    valueArrayMalloc();
     valueArray();
 
     storePointerInField();
