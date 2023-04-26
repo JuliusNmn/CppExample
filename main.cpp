@@ -4,6 +4,8 @@
 #include "NormalAnimals.h"
 #include "TestAnimals.h"
 
+Animal* globalvar;
+
 Animal* createAnimalPointer() {
     return new Cat();
 }
@@ -84,7 +86,13 @@ void valueArray(){
 
 
 void feedParent(Animal* c) {
-    c->parent->eat(15);
+    Animal * parent = c->parent;
+    
+    parent->eat(15);
+
+    if (Dog* d = dynamic_cast<Dog*>(parent)){
+        printf("parent is a dog.");
+    }
 }
 
 void addParent(Animal* a) {
@@ -95,6 +103,41 @@ void storePointerInField(){
     Cat* c = new Cat();
     addParent(c);
     feedParent(c);
+}
+bool isequal(int a, int b){
+    bool aleb = (a <= b);
+    bool blea = (b <= a);
+    bool alebandblea = aleb && blea;
+    if (aleb)
+        printf("a <= b");
+    if (blea)
+        printf("b <= a");
+    
+    
+    if (alebandblea) {
+        printf("a == b");
+    } else {
+        printf("a != b");
+    }
+    return alebandblea;
+}
+
+void accessGlobalVar(){
+    printf("\naccessing global var...\n");
+    globalvar->makeSound();
+}
+
+void callHybridFunction(){
+    Hybrid* h = new Hybrid();
+    printf("talking\n");
+    h->talk();
+    printf("walking\n");
+    h->walk();
+    Animal * a = (Animal*)h;
+
+    feedAnimalPointer(h);
+    Human* hu = (Human*)h;
+    hu->talk();
 }
 
 int main(){
@@ -109,6 +152,8 @@ int main(){
     doggo->eat(0x79);
 
     feedWholeAnimal(*doggo);
+
+
     
     Animal e = createWholeAnmimal();
 
@@ -119,7 +164,7 @@ int main(){
 
     multiArgFunction(d, &e, 0x10, 0x100);
 
-
+    globalvar = new Dog();
 
     callMultiArgFunction();
     callMultiArgFunctionByValue();
@@ -131,6 +176,9 @@ int main(){
 
     storePointerInField();
 
+    isequal(4,6);
+    callHybridFunction();
 
+    accessGlobalVar();
     return 0;
 }

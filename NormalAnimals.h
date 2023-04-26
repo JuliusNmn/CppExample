@@ -15,3 +15,4 @@ public:
     virtual void walk() override;
     virtual void eat(int foodAmount) override;
 };
+

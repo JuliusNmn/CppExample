@@ -30,7 +30,7 @@ void Dog::eat(int foodAmount) {
     belly += foodAmount;
     printf("I am a hungry dog. My belly is this full: %d\n", belly);
     printf("i will bark now\n");
-    makeSound();
+    makeSound(); 
 
 
 }

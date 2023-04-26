@@ -23,3 +23,21 @@ void InstantiatedButUnusedAnimal::walk() {
 void InstantiatedButUnusedAnimal::eat(int foodAmount) {
     printf("I am dead\n");
 }
+
+
+void Human::talk(){
+        printf(" blah blah ");
+ }
+
+void Hybrid::makeSound() {
+    printf(" ahh");
+}
+    void Hybrid::walk(){
+    printf(" ahh");
+}
+    void Hybrid::eat(int foodAmount) {
+    printf(" ahh %d", foodAmount);
+}
+    void Hybrid::talk(){
+    printf(" ahh");
+}

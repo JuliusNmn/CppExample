@@ -20,6 +20,7 @@ elseif(MSVC)
 	list(APPEND flags "/W4" "/WX")
 endif()
 list(APPEND flags "-g")
+list(APPEND flags "-O0")
 add_executable(main main.cpp Animal.cpp NormalAnimals.cpp TestAnimals.cpp)
 target_compile_options(main PRIVATE ${flags})
     
