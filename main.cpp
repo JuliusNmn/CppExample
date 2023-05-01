@@ -135,9 +135,13 @@ void callHybridFunction(){
     h->walk();
     Animal * a = (Animal*)h;
 
-    feedAnimalPointer(h);
+    feedAnimalPointer(a);
+    a->eat(4);
     Human* hu = (Human*)h;
+    printf("talking\n");
     hu->talk();
+    printf("thinking\n");
+    hu->think();
 }
 
 int main(){

@@ -17,13 +17,15 @@ public:
 class Human {
     public:
     virtual void talk();
+    virtual void think();
 
 };
 
-class Hybrid : public virtual Human, public virtual Animal {
+class Hybrid : public Human, public Animal {
 public:
     virtual void makeSound() override;
     virtual void walk() override;
     virtual void eat(int foodAmount) override;
     virtual void talk() override;
+    virtual void think() override;
 };

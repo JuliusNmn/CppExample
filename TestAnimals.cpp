@@ -26,18 +26,26 @@ void InstantiatedButUnusedAnimal::eat(int foodAmount) {
 
 
 void Human::talk(){
-        printf(" blah blah ");
+        printf(" blah blah \n");
  }
 
+ void Human::think(){
+        printf(" hmmmm  \n");
+ }
+
+
 void Hybrid::makeSound() {
-    printf(" ahh");
+    printf(" ahh\n");
 }
     void Hybrid::walk(){
-    printf(" ahh");
+    printf(" ahh\n");
 }
-    void Hybrid::eat(int foodAmount) {
-    printf(" ahh %d", foodAmount);
+void Hybrid::eat(int foodAmount) {
+    printf(" ahh %d\n", foodAmount);
 }
     void Hybrid::talk(){
-    printf(" ahh");
+    printf(" ahh bla bla \n");
 }
+ void Hybrid::think(){
+        printf("ahhh  hmmmm  \n");
+ }
